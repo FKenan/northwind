@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { HttpClient } from '@angular/common/http'; // backend'e istekte bulunmak için
 import { ProductResponseModel } from 'src/app/models/productResponseModel';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product',
@@ -10,27 +10,24 @@ import { ProductResponseModel } from 'src/app/models/productResponseModel';
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
-  apiUrl = 'https://localhost:44346/api/products/getall';
+  dataLoaded =false;
 
   productResponseModel: ProductResponseModel = {
-    data : this.products,
+    data: this.products,
     success: true,
-    message: "",
+    message: '',
   };
 
-  constructor(private httpClient: HttpClient) {
-    // parametrelere başka yerlerden erişebiliriz. private yaparak bu class dışından erişilmesini engelledik. türünü verince otomatik intance oluşturur, c#taki depencyresolverslar gibi.
-  }
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.getProducts();
   }
 
   getProducts() {
-    this.httpClient
-      .get<ProductResponseModel>(this.apiUrl) // gelen değer any olarak atanır .bu yüzden <> arasına tür yazarak cast ederiz gibi bişey.
-      .subscribe((response) => {
-        this.products = response.data;
-      }); // response gelen yanıt
+    this.productService.getProducts().subscribe(response => {  // bu kod bloğunun içindekiler sırayla çalışır .dışındakiler bu işlemin yani parantez içinin bitmesini beklemeden çalışır.
+      this.products= response.data;   
+      this.dataLoaded = true;
+    });
   }
 }
