@@ -4,7 +4,8 @@ import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   {path:"",component:ProductComponent},
-  {path:"products",component:ProductComponent}
+  {path:"products",component:ProductComponent},
+  {path:"products/category/:categoryId",component:ProductComponent}   // paremetre verilcekse : koyulur ve case sensetive yani categoryId büyük küçük duyarlı
 ];
 
 @NgModule({

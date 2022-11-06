@@ -1,6 +1,10 @@
 <ul class="list-group">
+    <li [class]="getAllCategoryClass()" 
+    routerLink="/products">Tüm Ürünler</li>
     <li (click)="setCurrentCategory(category)" 
-    routerLink = "/products/category/{{category.categoryId}}"
+    routerLink = "/products/category/{{category.categoryId}}"   
     *ngFor="let category of categories" 
-    [class]="getCurrentCategoryClass(category)">{{category.categoryName}}</li>     <!-- componentteki bir bilgiye, metoda vb göre ayarlamak için [] içine yazılır her şey [] içine yazılabiilir -->
+    [class]="getCurrentCategoryClass(category)">{{category.categoryName}}</li>
+    <!-- routerLink ile app-routing üzerindeki routeslere göndeririz -->
+    <!-- componentteki bir bilgiye, metoda vb göre ayarlamak için [] içine yazılır her şey [] içine yazılabiilir -->
 </ul>
