@@ -13,7 +13,8 @@ import { NaviComponent } from './components/navi/navi.component';
     AppComponent,
     ProductComponent,
     CategoryComponent,
-    NaviComponent
+    NaviComponent,
+
   ],
   imports: [
     BrowserModule,

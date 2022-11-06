@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; // backend'e istekte bulunmak için
-import { ProductResponseModel } from '../models/productResponseModel';
 import { Observable } from 'rxjs';
+import { ListResponseModel } from '../models/listResponseModel';
+import { Product } from '../models/product';
 
 
 @Injectable({
@@ -13,8 +14,8 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
   
-  getProducts():Observable<ProductResponseModel> {
-    return this.httpClient.get<ProductResponseModel>(this.apiUrl) // gelen değer any olarak atanır .bu yüzden <> arasına tür yazarak cast ederiz gibi bişey.  
+  getProducts():Observable<ListResponseModel<Product>> {
+    return this.httpClient.get<ListResponseModel<Product>>(this.apiUrl) // gelen değer any olarak atanır .bu yüzden <> arasına tür yazarak cast ederiz gibi bişey.  
   }
   
 }
